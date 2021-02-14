@@ -17,6 +17,7 @@ const showImages = images => {
   imagesArea.style.display = 'block';
   gallery.innerHTML = '';
   // show gallery title
+  toggleSpinner();
   galleryHeader.style.display = 'flex';
 
   images.forEach(image => {
@@ -45,7 +46,8 @@ const selectItem = (event, img) => {
   if (item === -1) {
     sliders.push(img);
   } else {
-    sliders.pop(img);
+    let deselect = sliders.indexOf(img);
+    sliders.splice(deselect, 1);
   }
 };
 var timer;
@@ -81,12 +83,13 @@ const createSlider = () => {
   timer = setInterval(function () {
     slideIndex++;
     changeSlide(slideIndex);
-  }, duration);
+  }, 1500);
 };
 
 // change slider index
 const changeItem = index => {
   changeSlide((slideIndex += index));
+
 };
 
 // change slide item
@@ -116,7 +119,7 @@ const displayImg = () => {
   clearInterval(timer);
   getImages(search.value);
   sliders.length = 0;
-  // toggleSpinner();
+  toggleSpinner();
 };
 
 searchBtn.addEventListener('click', function () {
@@ -137,3 +140,9 @@ sliderBtn.addEventListener('click', function () {
     createSlider();
   }
 });
+const toggleSpinner = () => {
+  const spinner = document.getElementById('loading-spinner').classList;
+  const imagesArea = document.querySelector('.images').classList;
+  spinner.toggle('d-none');
+  imagesArea.toggle('d-none');
+};

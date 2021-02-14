@@ -40,6 +40,7 @@ img {
   background-color: transparent;
   padding: 8px 10px;
   color: #fff;
+  z-index: 99999;
 }
 
 .dot {
@@ -63,4 +64,15 @@ img {
     height: 300px;
     width: 90%;
   }
+}
+.img-thumbnail:hover,
+.img-thumbnail.added {
+    opacity: 0.79;
+    transform: scale(1.01);
+    border: 2px solid #6f00ff;
+}
+
+.img-thumbnail {
+    transition: ease-in-out all 0.5s;
+    border-width: 2px;
 }
